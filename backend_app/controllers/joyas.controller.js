@@ -8,7 +8,7 @@ const read = async (req, res) => {
     return res.status(400).json({ message: "número de página no válido" });
   }
   try {
-    const joyas = await joyasModel.findAll({limit, order_by, page});
+    const joyas = await joyasModel.findAll({ limit, order_by, page });
     res.json(joyas);
   } catch (error) {
     console.log(error);
@@ -16,4 +16,15 @@ const read = async (req, res) => {
   }
 };
 
-export const joyasController = { read };
+const readWithFilter = async (req, res) => {
+  try {
+    const queryString = req.query;
+    const joyas = await joyasModel.findWithFilter(queryString);
+    res.json(joyas);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const joyasController = { read, readWithFilter };
