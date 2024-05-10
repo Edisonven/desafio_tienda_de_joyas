@@ -1,5 +1,4 @@
 import { pool } from "../database/connection.js";
-import format from "pg-format";
 
 const findAll = async ({ limit = 5, order_by = "id_ASC", page = 1 }) => {
   let query = "";
