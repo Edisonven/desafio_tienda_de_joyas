@@ -65,8 +65,9 @@ const findWithFilter = async ({ precio_max, precio_min, categoria, metal }) => {
   if (filtros.length > 0) {
     query += ` WHERE ${filtros.join(" AND ")}`;
   }
-console.log(query)
+
   const { rows: joyas } = await pool.query(query, values);
+
   return joyas;
 };
 
